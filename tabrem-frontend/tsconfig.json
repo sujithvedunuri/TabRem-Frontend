@@ -23,7 +23,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx"
-, "src/components/navbar/header.js", "pages/index.js", "pages/login/index.js", "pages/signup/index.js", "pages/_app.js"  ],
+, "src/components/navbar/header.tsx", "pages/index.js", "pages/login/index.js", "pages/signup/index.js", "pages/_app.js"  ],
   "exclude": [
     "node_modules"
   ]

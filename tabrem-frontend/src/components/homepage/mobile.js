@@ -6,11 +6,14 @@ import mobile from "../../../assest/mobile.png"
 
 
 const MobileLayout = styled(Layout)`
-height: 600px;
 /* background-color:rebeccapurple; */
 ` 
 const Box = styled.div`
-height: 600px;
+height: fit-content;
+width: 100%;
+/* background-color: azure; */
+display: flex;
+justify-content: center;
 `
 
 export default function Mobile() {
@@ -18,7 +21,7 @@ export default function Mobile() {
 
     // <MobileLayout>
       <Box>
-    <Image  src={mobile} ></Image>
+    <Image  src={mobile} height={700} width={420}/>
       </Box>
     // </MobileLayout>
 

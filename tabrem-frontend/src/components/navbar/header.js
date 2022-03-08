@@ -1,12 +1,10 @@
 import { Layout, Menu } from 'antd'
 import Link from 'next/link'
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 // import logo from "../../../assest/tabremlogo.png"
 import logo1 from "../../../assest/tabfinal.png"
 import Image from 'next/image'
-
-
 
 const HeaderCont = styled.div`
 /* position: sticky; */
@@ -27,6 +25,7 @@ width: 130px;
 /* margin-top: -3px; */
 padding-left: 40px;
 padding-top: 10px;
+cursor: pointer;
 /* background-color: yellowgreen; */
 `
 
@@ -45,11 +44,16 @@ padding: 20px;
 justify-content: space-between;
 ` 
 export default function HeaderBody() {
+
+  const [isLoggedIn, setLoggedIn] = useState(false)
+
   return (
 <HeaderCont>
   <Navb>
       <Logo>
-    <Image src={logo1}  placeholder="TabRem"/>
+      <Link href={"/"} passHref>   
+    <Image src={logo1}></Image>
+    </Link>
       </Logo>
 
       <Menubox>
@@ -59,12 +63,17 @@ export default function HeaderBody() {
       <Link href={"/features"} passHref>
       <MenuItem>Features</MenuItem>
       </Link>
-      <Link href={"/login"} passHref>
+
+      {isLoggedIn?<div></div>:
+      <>
+      <Link href={"/login"} passHref >
       <MenuItem>Login</MenuItem>
       </Link>
       <Link href={"/signup"} passHref>
       <MenuItem>Signup</MenuItem>
       </Link>
+      </>
+      }
       </Menubox>
     </Navb>
 </HeaderCont>

@@ -25,7 +25,7 @@ background: linear-gradient(to right, #FFFFFF, #FFEFBA); /* W3C, IE 10+/ Edge, F
 flex-wrap: wrap;
 `
 
-const HomeHeading = styled.p`
+const HomeHeading = styled.div`
 color: black;
 font-size: 2rem;
 font-weight:bold;
@@ -44,7 +44,7 @@ export default function Home() {
   again to<br/> take medicine
 <br/>
 <br/>
-<b>we're here to remind you!</b>
+<h5>we're here to remind you!</h5>
 </HomeHeading>
 
 

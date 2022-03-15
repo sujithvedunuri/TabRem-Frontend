@@ -9,9 +9,12 @@ import Image from 'next/image'
 const HeaderCont = styled.div`
 /* position: sticky; */
 height: 90px;
-background: rgb(241, 236, 228);;
+background: rgb(41, 236, 98);;
 /* display: flex; */
 /* justify-content: start; */
+-webkit-box-shadow: 0 2px 5px 0 rgba(55, 161, 255, 0.26), 0 4px 12px 0 rgba(121, 155, 254, 0.25);
+box-shadow: 0 2px 5px 0 rgba(55, 161, 245, 0.26), 0 4px 12px 0 rgba(121, 155, 254, 0.25); 
+
 `
 
 const Navb = styled.div`
@@ -24,7 +27,7 @@ height: 80px;
 width: 130px;
 /* margin-top: -3px; */
 padding-left: 40px;
-padding-top: 10px;
+padding-top: 18px;
 cursor: pointer;
 /* background-color: yellowgreen; */
 `
@@ -52,10 +55,10 @@ export default function HeaderBody() {
 <HeaderCont>
   <Navb>
       <Logo>
-      <Link href={"/"} >
-         <>
+      <Link href={"/"} passHref>
+         <a>
     <Image src={logo1}/>
-        </>  
+        </a>  
     </Link>
       </Logo>
 

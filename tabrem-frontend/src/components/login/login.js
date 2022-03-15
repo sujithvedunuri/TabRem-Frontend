@@ -51,6 +51,7 @@ const emaillabel = useremail.length==0 || useremail.includes('@')?'':<span style
 const passlabel = userpassword.length==0 || userpassword.length>6 ? '':<span style={{color: "red"}}>Password must be greater than 6 character
 </span>
 
+
   return (
     <>
     <LoginContainer>
@@ -69,6 +70,8 @@ const passlabel = userpassword.length==0 || userpassword.length>6 ? '':<span sty
     <FormInput type="password"   placeholder="Enter password" value={userpassword} onChange={passwordValidation}>
       </FormInput>
       {passlabel}
+      {name=="Register"?<FormInput type="password"   placeholder="Re enter password" value={userpassword} onChange={passwordValidation}>
+</FormInput>:""}
     </div>
       <br/><br/>
 <Formbutton ab = {isLoginReady} onClick={formSubmitHandler} type="submit">{name}</Formbutton>

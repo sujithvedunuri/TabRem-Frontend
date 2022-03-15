@@ -17,28 +17,12 @@ const meth =(e)=>{
 }
 
 export default function Features() {
-const [medicinelist,setMedicineList] = useState([])
-useEffect(()=> {
-  async function retriveMedcine () { 
-   
-  const response = await fetch("http://localhost:8080/getmedicines");
-  const  json = response.json()
-    setMedicineList(json)
-    console.log(json)
-}
-
-retriveMedcine()
-
-},[]);
 
   return (
     <>
   
-   {/* <h1>
-       features -1
-    </h1>
-    <a href="/api/auth/logout">Logout</a> */}
-   <DataCard/>
+  
+   <DataCard />
     
     </>
 

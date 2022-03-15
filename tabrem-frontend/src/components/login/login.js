@@ -1,59 +1,81 @@
 
-import { Form, Input, Button, Checkbox ,Layout} from 'antd';
-import React from 'react'
-import styled from 'styled-components'
+import React, { useState } from "react";
+import './loginStyles'
+import { FormInput, LoginBox, LoginContainer ,LoginBoxLeft,Formbutton} from "./loginStyles";
+import logo from "../../../assest/tabfinal.png"
+import Image from "next/image";
+import Password from "antd/lib/input/Password";
+import { METHODS } from "http";
+
+const LoginPage = (props) => {
+  const name = props.name;
+  const [useremail ,setUserEmail]  = useState('')
+  const [userpassword,setUserPassword] = useState('')
+  const [isLoginReady,setLoginReady] = useState(false)
+  const emailValidation=(event)=>{
+    var email = event.target.value
+    if (email.includes('@')){
+      setLoginReady(true)
+    }
+    setUserEmail( email);
+  }
+  const passwordValidation= (event)=>{
+    var pass = event.target.value
+    if (pass.length>6){
+      setLoginReady(true)
+    }
+    setUserPassword(pass);
+  }
 
 
-const LoginLayout = styled(Layout)`
-height: 750px;
-/* background-color: #FFFFFF; */
-display: flex;
-justify-content: center;
-background: #FFEFBA;  /* fallback for old browsers */
-background: -webkit-linear-gradient(to right, #FFFFFF, #FFEFBA);  /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to right, beige, beige); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+const formSubmitHandler = (event) =>{
+  const requestOptions = {
+    method: 'POST',
+    mode: 'no-cors',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    body: JSON.stringify({
+      title: 'React POST login details',
+    email: useremail,
+    Password:userpassword
 
-`
+  })
+};
 
-const GoogleButton  = styled.button`
-border: none;
-background-color: thistle;
-color: black;
-height: 30px;
-width: max-content;
-border-radius: 5px;
-
-.hover{
-  height  : 32px;
-  color: yellow;
+fetch('http://localhost:8080/getUserDetails',requestOptions).then(res=>{console.log('response',res)}).catch(e=>{
+console.log(e)
+})
 }
 
-`
-
-const Card = styled.div`
-background-color: aliceblue;
-border: black;
-border-radius: 5px;
-display: flex;
-justify-content: center;
-align-items: center;
-margin-top: 10%;
-height: 400px;
-width: 600px;
-`
-export default function LoginPage() {
+const emaillabel = useremail.length==0 || useremail.includes('@')?'':<span style={{color: "red"}}>Please Enter proper Email address
+</span>
+const passlabel = userpassword.length==0 || userpassword.length>6 ? '':<span style={{color: "red"}}>Password must be greater than 6 character
+</span>
 
   return (
-<LoginLayout>
-<Card>
-<GoogleButton>
-<a href="/api/auth/login">Login</a>
+    <>
+    <LoginContainer>
+    <LoginBoxLeft>
+<br/>
+    <Image src={logo} height={100} width={200}></Image>
+    </LoginBoxLeft>
+    <LoginBox>
+      <br/>
+    <h2>{name}</h2><br/><br/>
+    <div><FormInput type="email"   placeholder="Enter Email" value={useremail} onChange={emailValidation}></FormInput><br/>
+{emaillabel}
+    </div>
+    <div>
 
+    <FormInput type="password"   placeholder="Enter password" value={userpassword} onChange={passwordValidation}>
+      </FormInput>
+      {passlabel}
+    </div>
+      <br/><br/>
+<Formbutton ab = {isLoginReady} onClick={formSubmitHandler} type="submit">{name}</Formbutton>
+    </LoginBox>
+    </LoginContainer>
+        </>
+    );
+};
 
-
-
-</GoogleButton>
-</Card>
-</LoginLayout>
-  )
-}
+export default LoginPage;

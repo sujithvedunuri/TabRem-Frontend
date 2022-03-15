@@ -44,7 +44,7 @@ export default function Home() {
   again to<br/> take medicine
 <br/>
 <br/>
-<h6>we're here to remind you!</h6>
+<b>we're here to remind you!</b>
 </HomeHeading>
 
 

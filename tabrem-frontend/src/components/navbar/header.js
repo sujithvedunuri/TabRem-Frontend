@@ -29,12 +29,13 @@ cursor: pointer;
 /* background-color: yellowgreen; */
 `
 
-const MenuItem = styled.a`
+const MenuItem = styled.div`
 color:black;
 padding-right :30px;
 padding-top: 15px;
 font-size: 18px;
 text-decoration: none;
+cursor: pointer;
 `
 
 const Menubox = styled.div`
@@ -51,13 +52,15 @@ export default function HeaderBody() {
 <HeaderCont>
   <Navb>
       <Logo>
-      <Link href={"/"} passHref>   
-    <Image src={logo1}></Image>
+      <Link href={"/"} >
+         <>
+    <Image src={logo1}/>
+        </>  
     </Link>
       </Logo>
 
       <Menubox>
-      <Link href={"/"} passHref>
+      <Link href={"/"} passHref >
       <MenuItem>Home</MenuItem>
       </Link>
       <Link href={"/features"} passHref>
@@ -66,10 +69,10 @@ export default function HeaderBody() {
 
       {isLoggedIn?<div></div>:
       <>
-      <Link href={"/login"} passHref >
+      <Link href={"/credentials/login"} passHref >
       <MenuItem>Login</MenuItem>
-      </Link>
-      <Link href={"/signup"} passHref>
+      </Link> 
+      <Link href={"/credentials/signup"} passHref>
       <MenuItem>Signup</MenuItem>
       </Link>
       </>

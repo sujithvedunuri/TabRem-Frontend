@@ -1,5 +1,5 @@
 import {Layout} from 'antd'
-// import 'antd/dist/antd.css';
+import { useEffect } from 'react';
 import styled from 'styled-components';
 import Mobile from "../src/components/homepage/mobile"
 
@@ -12,16 +12,16 @@ width: 50%;
 height: 700px;
 `
 const HomeLayoutRight = styled(Layout)`
-background: beige;
+background: #c8e7e6;
 height: 700px;
 flex:50%;
 `
 const HomeLayout = styled(Layout)`
 display: flex;
-background: #FFEFBA;  /* fallback for old browsers */
-background: -webkit-linear-gradient(to right, #FFFFFF, #FFEFBA);  /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to right, #FFFFFF, #FFEFBA); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
+/* background-color: #8ab8c5;  */
+background-color: #eef4f0;
+/* background: -webkit-linear-gradient(to right, #FFFFFF, #FFEFBA); 
+background: linear-gradient(to right, #FFFFFF, #FFEFBA);  */
 flex-wrap: wrap;
 `
 
@@ -34,6 +34,22 @@ font-family: Verdana, Geneva, Tahoma, sans-serif;
 `
 
 export default function Home() {
+  useEffect(()=>
+  {
+  async function userdata() {
+
+    const response = await fetch("http://localhost:8080/api/user",{
+      credentials:"include",
+      mode:"no-cors"
+    }).then((res)=>{
+      const json = res.body
+      console.log(json)
+    })
+    console.log(response)
+  }
+
+  userdata()
+}, [])
   return (
 
 <HomeLayout>
@@ -46,8 +62,6 @@ export default function Home() {
 <br/>
 <h5>we're here to remind you!</h5>
 </HomeHeading>
-
-
 </HomeLayoutLeft>
 <HomeLayoutRight>
   <Mobile/>

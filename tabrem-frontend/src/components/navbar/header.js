@@ -9,7 +9,7 @@ import Image from 'next/image'
 const HeaderCont = styled.div`
 /* position: sticky; */
 height: 90px;
-background: rgb(41, 236, 98);;
+background: #abdbe3;
 /* display: flex; */
 /* justify-content: start; */
 -webkit-box-shadow: 0 2px 5px 0 rgba(55, 161, 255, 0.26), 0 4px 12px 0 rgba(121, 155, 254, 0.25);
@@ -23,11 +23,11 @@ justify-content: space-between;
 `
 
 const Logo = styled.div`
-height: 80px;
-width: 130px;
+height: 100px;
+width: 160px;
 /* margin-top: -3px; */
 padding-left: 40px;
-padding-top: 18px;
+padding-top: 15px;
 cursor: pointer;
 /* background-color: yellowgreen; */
 `

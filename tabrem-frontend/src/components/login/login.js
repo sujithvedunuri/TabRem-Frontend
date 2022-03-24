@@ -1,14 +1,13 @@
 
 import React, { useState } from "react";
 import './loginStyles'
-import { FormInput, LoginBox, LoginContainer ,LoginBoxLeft,Formbutton} from "./loginStyles";
+import { FormInput, LoginBox, LoginContainer ,LoginBoxLeft,Formbutton,H2} from "./loginStyles";
 import logo from "../../../assest/tabfinal.png"
 import Image from "next/image";
-import Password from "antd/lib/input/Password";
-import { METHODS } from "http";
+import Router, { useRouter } from "next/router";
 
 const LoginPage = (props) => {
-  const name = props.name;
+  const router  = useRouter()
   const [useremail ,setUserEmail]  = useState('')
   const [userpassword,setUserPassword] = useState('')
   const [isLoginReady,setLoginReady] = useState(false)
@@ -28,22 +27,21 @@ const LoginPage = (props) => {
   }
 
 
-const formSubmitHandler = (event) =>{
-  const requestOptions = {
-    method: 'POST',
-    mode: 'no-cors',
-    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-    body: JSON.stringify({
-      title: 'React POST login details',
-    email: useremail,
-    Password:userpassword
-
+const formSubmitHandler = async (e) =>{
+e.preventDefault()
+await fetch('http://localhcost:8080/api/login',{
+  method:"POST",
+  mode:"no-cors",
+  credentials:"include",
+  headers:{
+    "content-type":"application/json"
+  },
+  body: JSON.stringify({
+    email:useremail,
+    password:userpassword
   })
-};
-
-fetch('http://localhost:8080/getUserDetails',requestOptions).then(res=>{console.log('response',res)}).catch(e=>{
-console.log(e)
 })
+await router.push("/")
 }
 
 const emaillabel = useremail.length==0 || useremail.includes('@')?'':<span style={{color: "red"}}>Please Enter proper Email address
@@ -61,7 +59,7 @@ const passlabel = userpassword.length==0 || userpassword.length>6 ? '':<span sty
     </LoginBoxLeft>
     <LoginBox>
       <br/>
-    <h2>{name}</h2><br/><br/>
+    <H2>Login</H2><br/><br/>
     <div><FormInput type="email"   placeholder="Enter Email" value={useremail} onChange={emailValidation}></FormInput><br/>
 {emaillabel}
     </div>
@@ -70,11 +68,9 @@ const passlabel = userpassword.length==0 || userpassword.length>6 ? '':<span sty
     <FormInput type="password"   placeholder="Enter password" value={userpassword} onChange={passwordValidation}>
       </FormInput>
       {passlabel}
-      {name=="Register"?<FormInput type="password"   placeholder="Re enter password" value={userpassword} onChange={passwordValidation}>
-</FormInput>:""}
     </div>
       <br/><br/>
-<Formbutton ab = {isLoginReady} onClick={formSubmitHandler} type="submit">{name}</Formbutton>
+<Formbutton ab = {isLoginReady} onClick={formSubmitHandler} type="submit">Login</Formbutton>
     </LoginBox>
     </LoginContainer>
         </>

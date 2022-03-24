@@ -1,6 +1,7 @@
 import React from 'react'
 import { CardBox,CardContainer,CardItem ,DeleteButton,EditButton} from './datacardsStyles'
 import { useState,useEffect } from 'react'
+import styled from 'styled-components'
 
 // export async function getStaticProps() {
 //   const res = await fetch("http://localhost:8080/getmedicines");
@@ -14,10 +15,8 @@ import { useState,useEffect } from 'react'
 
 
 function DataCard() {
-
-
   const [medicinelist,setMedicineList] = useState([])
-    useEffect(()=> {
+  useEffect(()=> {
       async function getData(){
       const getMedicineData =  await fetch("http://localhost:8080/getmedicines");
     getMedicineData.json().then(r=>{
@@ -34,15 +33,23 @@ function DataCard() {
 
     
         
+const Button = styled.button`
+background-color: #2596be;
+color: white;
+border: none;
+height: 40px;
+border-radius: 5px;
+margin-left: calc(45%);
+margin-top: 10px;
+`
 
 
   const MainDataCardComponent = (key)=>{
-
-    console.log(key)
+      console.log(key)
   return(
     <CardItem key={key.ID}>
       <h2>
-  {key.tablet_name}
+  {(key.tablet_name)}
       </h2>
       <p>{key.medicine_type}</p>
       <p>Dosage: {key.medicine_dosage}</p>
@@ -67,20 +74,21 @@ function DataCard() {
     </CardItem>
   )
   }
-  
-  
-
-  
-
 
   return (
+    <>
+  <Button>
+    Add Medicine
+  </Button>
+
     <CardContainer> 
     <CardBox>
       {medicinelist.map(
-  MainDataCardComponent
-      )}
+        MainDataCardComponent
+        )}
 </CardBox>
 </CardContainer> 
+        </>
   )
 }
 

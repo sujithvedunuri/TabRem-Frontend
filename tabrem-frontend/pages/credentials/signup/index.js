@@ -1,11 +1,9 @@
 import React from 'react'
-import { useUser } from '@auth0/nextjs-auth0';
-import Image from 'next/image';
-import LoginPage from '../../../src/components/login/login';
+import Register from '../../../src/components/datacards/register/register';
 
 export default function Signup() {
   return (
-<LoginPage name ="Register"/>
+<Register/>
   );
 }
 

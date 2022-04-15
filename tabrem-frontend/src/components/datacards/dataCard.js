@@ -2,20 +2,17 @@ import React from 'react'
 import { CardBox,CardContainer,CardItem ,DeleteButton,EditButton} from './datacardsStyles'
 import { useState,useEffect } from 'react'
 import styled from 'styled-components'
+import MedicineForm from './medicineform'
 
-// export async function getStaticProps() {
-//   const res = await fetch("http://localhost:8080/getmedicines");
-//   const lis = await res.json()
-//   return {
-//     props: {  lists, }
-//   }  
-// }
 
 
 
 
 function DataCard() {
+
   const [medicinelist,setMedicineList] = useState([])
+  const [medicineViewState, setMedicineViewState] = useState(true)
+  const [viewstate,setViewState] = useState(false)
   useEffect(()=> {
       async function getData(){
       const getMedicineData =  await fetch("http://localhost:8080/getmedicines");
@@ -42,52 +39,64 @@ border-radius: 5px;
 margin-left: calc(45%);
 margin-top: 10px;
 `
+const toggleButton = (e)=>{
+  setMedicineViewState(!medicineViewState)
+  setViewState(!viewstate)
 
+}
 
-  const MainDataCardComponent = (key)=>{
-      console.log(key)
+  const MainDataCardComponent = (med)=>{
+      console.log(med)
   return(
-    <CardItem key={key.ID}>
+<>
+
+
+    <CardItem key={ med && med.id}>
       <h2>
-  {(key.tablet_name)}
+  {med && med.tablet_name}
       </h2>
-      <p>{key.medicine_type}</p>
-      <p>Dosage: {key.medicine_dosage}</p>
+      <p>{med && med.medicine_type}</p>
+      <p>Dosage: {med && med.medicine_dosage}</p>
   <EditButton>
     Edit
   </EditButton>
   <DeleteButton onClick={(e)=>{
     fetch(
-  `http://localhost:8080/deletemedicine/${key.ID}`,{
-  method:"POST",
-  mode:"no-cors",
-  headers:{"Content-Type":"application/json"},
-  body:{ 
-  }
-  }
-    )
+      `http://localhost:8080/deletemedicine/${med.id}`,{
+        method:"POST",
+        mode:"no-cors",
+        headers:{"Content-Type":"application/json"},
+      }
+      )
+      
   }}
   >
     Delete
   </DeleteButton>
   
     </CardItem>
+  
+    </>
   )
   }
 
+
+
   return (
     <>
-  <Button>
-    Add Medicine
+  <Button onClick={toggleButton}>
+    {viewstate?"check your Medicine List":"Wanna Add Medicine?"}
   </Button>
+  <br/><br/>
 
+    { medicineViewState ?
     <CardContainer> 
     <CardBox>
-      {medicinelist.map(
+      {medicinelist.length==0?<h3>No Medicines to remind, <br/>Please add  Medicine</h3>: medicinelist.map(
         MainDataCardComponent
         )}
 </CardBox>
-</CardContainer> 
+</CardContainer> :<MedicineForm/>}
         </>
   )
 }

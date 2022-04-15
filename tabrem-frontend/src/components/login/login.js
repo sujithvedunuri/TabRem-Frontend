@@ -1,7 +1,7 @@
 
 import React, { useState } from "react";
-import './loginStyles'
-import { FormInput, LoginBox, LoginContainer ,LoginBoxLeft,Formbutton,H2} from "./loginStyles";
+import '../loginStyles'
+import { FormInput, LoginBox, LoginContainer ,LoginBoxLeft,Formbutton,H2} from "../loginStyles";
 import logo from "../../../assest/tabfinal.png"
 import Image from "next/image";
 import Router, { useRouter } from "next/router";
@@ -29,7 +29,7 @@ const LoginPage = (props) => {
 
 const formSubmitHandler = async (e) =>{
 e.preventDefault()
-await fetch('http://localhcost:8080/api/login',{
+await fetch('http://localhost:8080/api/login',{
   method:"POST",
   mode:"no-cors",
   credentials:"include",

@@ -8,7 +8,7 @@ text-align: center;
 box-shadow: 5rem;
 border-radius: 10px;
 border-color: aquamarine;
-margin-top: 10%;
+margin-top: 5%;
 background-color: white;
 justify-self: center;
 justify-content: center;

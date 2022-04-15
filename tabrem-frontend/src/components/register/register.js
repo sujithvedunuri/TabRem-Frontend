@@ -1,9 +1,9 @@
 import React from 'react'
 import { useState } from 'react';
-import  {LoginContainer,LoginBoxLeft,LoginBox,FormInput,H2,Formbutton} from  "../../login/loginStyles";
 import Image from 'next/image';
-import logo from "../../../../assest/tabfinal.png"
-import Router, { useRouter } from 'next/router';
+import logo from '../../../assest/tabfinal.png'
+import  { useRouter } from 'next/router';
+import { Formbutton, FormInput, H2, LoginBox, LoginBoxLeft, LoginContainer } from '../loginStyles';
 
 
 
@@ -59,6 +59,7 @@ e.preventDefault();
       <LoginContainer>
       <LoginBoxLeft>
   <br/>
+
       <Image src={logo} height={100} width={200}></Image>
       </LoginBoxLeft>
       <LoginBox>
